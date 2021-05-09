@@ -1,0 +1,145 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "sourceType": "module",
+        "allowImportExportEverywhere": false,
+        "codeFrame": false,
+        "project": "tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "react"
+    ],
+    "settings": {
+        "import/parsers": {
+            "@typescript-eslint/parser": [
+                ".ts",
+                ".tsx"
+            ]
+        },
+        "import/resolver": {
+            "node": {
+                "paths": [
+                    "src"
+                ],
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
+        }
+    },
+    "extends": [
+        "airbnb",
+        "prettier",
+        "airbnb-typescript"
+        //        "plugin:react/recommended"
+    ],
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "max-len": [
+            "error",
+            {
+                "code": 150
+            }
+        ],
+        "prefer-promise-reject-errors": [
+            "off"
+        ],
+        "react/jsx-filename-extension": [
+            "off"
+        ],
+        "no-return-assign": [
+            "off"
+        ],
+        "react/react-in-jsx-scope": "off",
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
+            }
+        ],
+        "radix": "off",
+        "react/jsx-indent": "off",
+        "react/jsx-indent-props": "off",
+        "no-else-return": "off",
+        "nonblock-statement-body-position": "off",
+        "curly": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "@typescript-eslint/keyword-spacing": "off",
+        "react/jsx-curly-brace-presence": "off",
+        "@typescript-eslint/indent": "off",
+        "no-nested-ternary": "off",
+        "implicit-arrow-linebreak": "off",
+        "react/jsx-curly-newline": "off",
+        "react/jsx-max-props-per-line": "off",
+        "@typescript-eslint/quotes": "off",
+        "react/jsx-closing-bracket-location": "off",
+        "no-confusing-arrow": "off",
+        "object-shorthand": "off",
+        "arrow-parens": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "args": "none",
+                "ignoreRestSiblings": false
+            }
+        ],
+        "spaced-comment": "off",
+        "func-names": "off",
+        "@typescript-eslint/space-before-function-paren": "off",
+        "prefer-arrow-callback": "off",
+        "space-before-blocks": "off",
+        "padded-blocks": "off",
+        "object-curly-spacing": "off",
+        "no-trailing-spaces": "off",
+        "react/jsx-first-prop-new-line": "off",
+        "eol-last": "off",
+        "@typescript-eslint/comma-dangle": "off",
+        "comma-dangle": "off",
+        "@typescript-eslint/comma-spacing": "off",
+        "no-multiple-empty-lines": "off",
+        "react/jsx-closing-tag-location": "off",
+        "react/jsx-tag-spacing": "off",
+        "arrow-body-style": [
+            "off",
+            "always"
+        ],
+        "import/prefer-default-export": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "react/prop-types": "off",
+        "react/jsx-wrap-multilines": "off",
+        "react/jsx-props-no-spreading": "off",
+        "class-methods-use-this": "off",
+        "consistent-return": "off",
+        "no-use-before-define": "off",
+        "jsx-a11y/media-has-caption": "off",
+        "no-restricted-syntax": "off",
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
+        "@typescript-eslint/semi": [
+            0,
+            "always"
+        ],
+        "object-curly-newline": "off",
+        "operator-linebreak": "off",
+        "linebreak-style": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "no-underscore-dangle": "warn",
+        "react/require-default-props": "off"
+    }
+}
