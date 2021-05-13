@@ -1,0 +1,24 @@
+{
+  "name": "pethouse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-fe": "cd pethouse-fe && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivantuer/pethouse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivantuer/pethouse/issues"
+  },
+  "homepage": "https://github.com/ivantuer/pethouse#readme",
+  "dependencies": {
+    "history": "4.10.1"
+  }
+}

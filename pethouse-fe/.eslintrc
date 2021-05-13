@@ -56,7 +56,6 @@
         "no-return-assign": [
             "off"
         ],
-        "react/react-in-jsx-scope": "off",
         "import/extensions": [
             "error",
             "ignorePackages",
@@ -125,6 +124,7 @@
         "no-use-before-define": "off",
         "jsx-a11y/media-has-caption": "off",
         "no-restricted-syntax": "off",
+        "react/react-in-jsx-scope": "off",
         "no-param-reassign": [
             "error",
             {
