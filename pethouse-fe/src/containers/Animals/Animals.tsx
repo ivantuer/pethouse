@@ -1,11 +1,40 @@
-import { Box, Button, SimpleGrid, Text } from '@chakra-ui/react'
+import { AddIcon } from '@chakra-ui/icons'
+import { Button, Box, Text, SimpleGrid, useDisclosure } from '@chakra-ui/react'
 import { AnimalCard } from 'components/AnimalCard'
 import Header from 'components/Header/Header'
 import withLocalization, { IWithLocalization } from 'hocs/withLocalization'
 import { FC, memo } from 'react'
 import { Select, TextInput } from 'UI/TextInput'
+import { CustomModal } from 'UI/Modal'
+
+import { FindAnimalDocument, useCreateAnimalMutation, useFindAnimalQuery } from 'generated/graphql'
+import { CreateAnimalForm } from 'components/CreateAnimalForm'
 
 const AnimalsContainer: FC<IWithLocalization> = ({ intl }) => {
+  const { data } = useFindAnimalQuery({
+    variables: {
+      query: {
+        relations: ['creator', 'shelter'],
+      },
+    },
+  })
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const [createAnimalMutation, { loading }] = useCreateAnimalMutation({
+    onCompleted: onClose,
+    refetchQueries: [
+      {
+        query: FindAnimalDocument,
+        variables: {
+          query: {
+            relations: ['creator', 'shelter'],
+          },
+        },
+      },
+    ],
+  })
+
   return (
     <Box minH="100vh">
       <Header />
@@ -71,20 +100,32 @@ const AnimalsContainer: FC<IWithLocalization> = ({ intl }) => {
           </Button>
         </Box>
         <Box p="2em" borderRadius="0.5rem" flex={1} bg="white">
-          <Box display="flex" mb="1rem">
-            <Box display="flex">
-              <Text mr="0.5rem">Всього тварин: </Text> <Text fontWeight="600">228</Text>
-            </Box>
+          <Box mb="1em" alignItems="center" display="flex" w="100%" justifyContent="space-between">
+            <Text>
+              Всього тварин:{' '}
+              <Text as="span" fontWeight="600">
+                {data?.findAnimal.length}
+              </Text>
+            </Text>
+            <Button onClick={onOpen}>
+              <AddIcon />
+            </Button>
           </Box>
           <SimpleGrid columns={[1, 2, 3, 4]} spacing="2rem">
-            {Array(10)
-              .fill('a')
-              .map(() => (
-                <AnimalCard />
-              ))}
+            {data?.findAnimal?.map((animal) => (
+              <AnimalCard key={animal.id} animal={animal} />
+            ))}
           </SimpleGrid>
         </Box>
       </Box>
+
+      <CustomModal label={intl('addAnimal')} isOpen={isOpen} onClose={onClose}>
+        <CreateAnimalForm
+          loading={loading}
+          onCancel={onClose}
+          onSubmit={({ shelter, ...formValues }) => createAnimalMutation({ variables: { createAnimalInput: formValues } })}
+        />
+      </CustomModal>
     </Box>
   )
 }

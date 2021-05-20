@@ -1,0 +1,6 @@
+
+mutation UpdateAnimal($updateAnimalInput: UpdateAnimalInput!){
+    updateAnimal(updateAnimalInput: $updateAnimalInput){
+        id
+    }
+}

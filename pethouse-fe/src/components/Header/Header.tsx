@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { Box, Button, Menu, MenuButton, MenuItem, MenuList, Text, Image } from '@chakra-ui/react'
-import { PROFILE_PATH } from 'constants/routes'
+import { ANIMALS_PATH, PROFILE_PATH } from 'constants/routes'
 import MAIN_CONTEXT_ACTION_TYPES from 'contexts/main/actionTypes'
 import { MainContext } from 'contexts/main/mainContext'
 import withLocalization, { IWithLocalization } from 'hocs/withLocalization'
@@ -22,7 +22,9 @@ const Header: FC<IWithLocalization> = ({ intl }) => {
         PetHouse
       </Text> */}
       {/* <Box h="2rem"> */}
-      <Image h={['3rem', '100%']} src={PetHouseLogo} alt="PetHouse" />
+      <Link to={ANIMALS_PATH}>
+        <Image h={['3rem', '100%']} src={PetHouseLogo} alt="PetHouse" />
+      </Link>
       {/* </Box> */}
       <Box display="flex" alignItems="center">
         <Box mr="2rem">

@@ -1,0 +1,6 @@
+
+mutation UpdateUserShelter($updateUserShelterInput: UpdateUserShelterInput!){
+    updateUserShelter(updateUserShelterInput: $updateUserShelterInput){
+        id
+    }
+}

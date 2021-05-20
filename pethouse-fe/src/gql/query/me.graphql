@@ -1,0 +1,16 @@
+query Me{
+    me{
+  email
+  firstName
+  lastName
+  phone
+  jobPosition
+  role
+  id
+  role
+  shelter{
+  title
+  id
+  }
+    }
+}

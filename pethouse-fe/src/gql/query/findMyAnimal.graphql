@@ -1,0 +1,21 @@
+query FindMyAnimal($query: AnimalQueryInput!) {
+    findMyAnimal(query: $query) {
+        name
+        status
+        height
+        weight
+        creator{
+        email
+        }
+        shelter{
+        title
+        }
+        id
+        isSterilized
+        gender
+        age
+        description
+        color
+        imageUrl
+    }
+}

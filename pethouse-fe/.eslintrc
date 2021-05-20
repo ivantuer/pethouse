@@ -4,7 +4,7 @@
         "sourceType": "module",
         "allowImportExportEverywhere": false,
         "codeFrame": false,
-        "project": "tsconfig.json"
+        "project": "./tsconfig.json"
     },
     "plugins": [
         "@typescript-eslint",

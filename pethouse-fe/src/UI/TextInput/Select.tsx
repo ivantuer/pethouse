@@ -10,6 +10,7 @@ import {
   Select as ChakraSelect,
   SelectProps as ISelectProps,
 } from '@chakra-ui/react'
+import { useLocalization } from 'hooks/useLocalization'
 
 import { FC, memo } from 'react'
 
@@ -39,12 +40,15 @@ const Select: FC<SelectProps> = ({
   options,
   ...rest
 }) => {
+  const intl = useLocalization()
   return (
     <FormControl {...FormControlProps} isInvalid={!!error}>
       <FormLabel {...FormLabelProps}>{label}</FormLabel>
-      <ChakraSelect value={value} placeholder={placeholder} {...rest}>
+      <ChakraSelect value={value} placeholder={placeholder || intl('choose')} {...rest}>
         {options?.map((option) => (
-          <option value={option.value}>{option.name}</option>
+          <option key={option.value} value={option.value}>
+            {option.name}
+          </option>
         ))}
       </ChakraSelect>
       {helperText && <FormHelperText {...FormHelperTextProps}>{helperText}</FormHelperText>}

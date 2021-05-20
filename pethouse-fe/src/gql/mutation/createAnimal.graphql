@@ -1,0 +1,7 @@
+
+mutation CreateAnimal($createAnimalInput: CreateAnimalInput!){
+    createAnimal(createAnimalInput: $createAnimalInput){
+        id
+        name
+    }
+}

@@ -1,0 +1,15 @@
+query FindUser($query: UserQueryInput!) {
+    findUser(query: $query) {
+      email
+  firstName
+  lastName
+  phone
+  jobPosition
+  role
+  id
+  shelter{
+  title
+  id
+  }
+    }
+}

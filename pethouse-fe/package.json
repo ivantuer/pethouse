@@ -3,10 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.3.18",
+    "@apollo/react-common": "^3.1.4",
+    "@apollo/react-hooks": "^4.0.0",
     "@chakra-ui/icons": "^1.0.13",
-    "@chakra-ui/react": "^1.6.1",
+    "@chakra-ui/react": "^1.6.2",
     "@emotion/react": "11",
     "@emotion/styled": "11",
+    "@graphql-codegen/add": "^2.0.2",
+    "@graphql-codegen/cli": "^1.21.4",
+    "@graphql-codegen/introspection": "^1.18.2",
+    "@graphql-codegen/typescript": "^1.22.0",
+    "@graphql-codegen/typescript-operations": "^1.17.16",
+    "@graphql-codegen/typescript-react-apollo": "^2.2.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -16,10 +25,13 @@
     "@types/react-intl": "^3.0.0",
     "@types/react-router-dom": "^5.1.7",
     "@types/yup": "^0.29.11",
+    "aws-amplify": "^4.0.2",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "formik": "^2.2.6",
     "framer-motion": "4",
+    "graphql": "^15.5.0",
     "history": "4.10.1",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-intl": "^5.17.5",
@@ -33,7 +45,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +67,11 @@
     ]
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.21.4",
+    "@graphql-codegen/introspection": "1.18.2",
+    "@graphql-codegen/typescript": "1.22.0",
+    "@graphql-codegen/typescript-operations": "1.17.16",
+    "@graphql-codegen/typescript-react-apollo": "2.2.4",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "babel-eslint": "^10.1.0",

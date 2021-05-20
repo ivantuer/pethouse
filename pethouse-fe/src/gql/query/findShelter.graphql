@@ -1,0 +1,9 @@
+query FindShelter($query: ShelterQueryInput!) {
+    findShelter(query: $query) {
+      id
+      title
+      email
+      phone
+      address   
+    }
+}

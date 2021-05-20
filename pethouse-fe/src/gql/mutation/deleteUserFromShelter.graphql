@@ -1,0 +1,6 @@
+
+mutation DeleteUserFromShelter($deleteUserFromShelterInput: LinkUserInput!){
+    deleteUserFromShelter(deleteUserFromShelterInput: $deleteUserFromShelterInput){
+        id
+    }
+}

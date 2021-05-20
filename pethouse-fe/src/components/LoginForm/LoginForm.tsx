@@ -1,19 +1,23 @@
 import { Button, Text } from '@chakra-ui/react'
-import withLocalization, { IWithLocalization } from 'hocs/withLocalization'
 import { FC, memo } from 'react'
 import { TextInput } from 'UI/TextInput'
-import { useFormik } from 'formik'
+import { FormikHelpers, useFormik } from 'formik'
 import { Link } from 'react-router-dom'
 import { SIGN_UP_PATH } from 'constants/routes'
+import { ILogInSchema } from 'typescript/interface/auth'
+import { useLocalization } from 'hooks/useLocalization'
 import { initialValuesLoginForm, schemaLoginForm } from './schema'
 
-const LoginForm: FC<IWithLocalization> = ({ intl }) => {
+interface ILogInFormProps {
+  onSubmit: (formValues: ILogInSchema, formContext: FormikHelpers<ILogInSchema>) => void
+}
+
+const LoginForm: FC<ILogInFormProps> = ({ onSubmit }) => {
+  const intl = useLocalization()
   const { values, errors, touched, handleChange, handleSubmit } = useFormik({
     initialValues: initialValuesLoginForm,
     validationSchema: schemaLoginForm,
-    onSubmit: () => {
-      console.log('hello')
-    },
+    onSubmit: onSubmit,
   })
 
   return (
@@ -42,4 +46,4 @@ const LoginForm: FC<IWithLocalization> = ({ intl }) => {
   )
 }
 
-export default memo(withLocalization(LoginForm))
+export default memo(LoginForm)

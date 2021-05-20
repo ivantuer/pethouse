@@ -1,31 +1,36 @@
 import { Badge, Box, Image } from '@chakra-ui/react'
 import { ANIMAL_PATH } from 'constants/routes'
-import { memo } from 'react'
+import { FindAnimalQuery } from 'generated/graphql'
+import { FC, memo } from 'react'
 import { Link } from 'react-router-dom'
 
-const AnimalCard = () => {
+interface IAnimalCard {
+  animal: FindAnimalQuery['findAnimal'][0]
+}
+
+const AnimalCard: FC<IAnimalCard> = ({ animal }) => {
   return (
-    <Link to={ANIMAL_PATH.replace(':id', '1')}>
-      <Box borderWidth="1px" borderRadius="lg" overflow="hidden">
-        <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/VAN_CAT.png/1200px-VAN_CAT.png" alt="Барсик" />
+    <Link to={ANIMAL_PATH.replace(':id', animal.id)}>
+      <Box h="100%" borderWidth="1px" borderRadius="lg" overflow="hidden">
+        {animal.imageUrl ? <Image minH="10em" src={animal.imageUrl} alt="Барсик" /> : <Box h="10em" />}
         <Box p="6">
           <Box d="flex" alignItems="baseline">
             <Badge borderRadius="full" px="2" colorScheme="teal">
-              New
+              {animal.status}
             </Badge>
             <Box color="gray.500" fontWeight="semibold" letterSpacing="wide" fontSize="xs" textTransform="uppercase" ml="2">
-              1 лапка &bull; 2 вушка
+              {animal.height} см &bull; {animal.weight} кг
             </Box>
           </Box>
 
           <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
-            Барсик
+            {animal.name}
           </Box>
 
           <Box>
-            2{' '}
+            {animal.age}{' '}
             <Box as="span" color="gray.600" fontSize="sm">
-              роки
+              років
             </Box>
           </Box>
         </Box>
