@@ -1,0 +1,435 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ShelterType {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  version: Int!
+  title: String
+  address: String
+  phone: String
+  email: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type PartialShelterType {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  title: String
+  address: String
+  phone: String
+  email: String
+}
+
+type UserType {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  version: Int!
+  email: String!
+  firstName: String
+  lastName: String
+  phone: String
+  jobPosition: String
+  role: UserRoleEnum
+  shelter: PartialShelterType
+}
+
+"""User role enum"""
+enum UserRoleEnum {
+  """SuperAdmin"""
+  SuperAdmin
+
+  """ShelterAdmin"""
+  ShelterAdmin
+
+  """ShelterWorker"""
+  ShelterWorker
+
+  """User"""
+  User
+}
+
+type PartialUserType {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  jobPosition: String
+  role: UserRoleEnum
+  shelter: PartialShelterType
+}
+
+type AnimalType {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  version: Int!
+  creator: PartialUserType!
+  shelter: PartialShelterType
+  name: String!
+  age: Float
+  status: AnimalStatusEnum
+  gender: AnimalGenderEnum
+  isSterilized: Boolean
+  weight: Float
+  height: Float
+  color: AnimalColorEnum
+  description: String
+  imageUrl: String
+  type: AnimalTypeEnum
+}
+
+"""Animal status enum"""
+enum AnimalStatusEnum {
+  """Adopted"""
+  Adopted
+
+  """InShelter"""
+  InShelter
+
+  """OnStreet"""
+  OnStreet
+
+  """InFamily"""
+  InFamily
+}
+
+"""Animal gender enum"""
+enum AnimalGenderEnum {
+  """Male"""
+  Male
+
+  """Female"""
+  Female
+}
+
+"""Animal color enum"""
+enum AnimalColorEnum {
+  """White"""
+  White
+
+  """Black"""
+  Black
+
+  """Mixed"""
+  Mixed
+
+  """Other"""
+  Other
+}
+
+"""Animal type enum"""
+enum AnimalTypeEnum {
+  """Dog"""
+  Dog
+
+  """Cat"""
+  Cat
+
+  """Other"""
+  Other
+}
+
+type Query {
+  findUser(query: UserQueryInput!): [UserType!]!
+  me: UserType!
+  findShelter(query: ShelterQueryInput!): [ShelterType!]!
+  findAnimal(query: AnimalQueryInput!): [AnimalType!]!
+  findMyAnimal(query: AnimalQueryInput!): [AnimalType!]!
+}
+
+input UserQueryInput {
+  relations: [String!] = []
+  like: String = ""
+  skip: Float = 0
+  take: Float = 20
+  search: SearchInput = {query: ""}
+  startFrom: String = ""
+  where: UserWhere
+  order: UserOrder
+}
+
+input SearchInput {
+  query: String!
+}
+
+input UserWhere {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  jobPosition: String
+  role: UserRoleEnum
+  shelter: LinkShelterInput
+}
+
+input LinkShelterInput {
+  id: ID
+}
+
+input UserOrder {
+  id: OrderDirection
+  createdAt: OrderDirection
+  deletedAt: OrderDirection
+  updatedAt: OrderDirection
+  version: OrderDirection
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  jobPosition: String
+  role: String
+  shelter: String
+}
+
+enum OrderDirection {
+  ASC
+  DESC
+}
+
+input ShelterQueryInput {
+  relations: [String!] = []
+  like: String = ""
+  skip: Float = 0
+  take: Float = 20
+  search: SearchInput = {query: ""}
+  startFrom: String = ""
+  where: ShelterWhere
+  order: ShelterOrder
+}
+
+input ShelterWhere {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  title: String
+  address: String
+  phone: String
+  email: String
+}
+
+input ShelterOrder {
+  id: OrderDirection
+  createdAt: OrderDirection
+  deletedAt: OrderDirection
+  updatedAt: OrderDirection
+  version: OrderDirection
+  title: String
+  phone: String
+  email: String
+  address: String
+}
+
+input AnimalQueryInput {
+  relations: [String!] = []
+  like: String = ""
+  skip: Float = 0
+  take: Float = 20
+  search: SearchInput = {query: ""}
+  startFrom: String = ""
+  where: AnimalWhere
+  order: AnimalOrder
+}
+
+input AnimalWhere {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  creator: LinkUserInput
+  shelter: LinkShelterInput
+  name: String
+  age: Float
+  status: AnimalStatusEnum
+  gender: AnimalGenderEnum
+  isSterilized: Boolean
+  weight: Float
+  height: Float
+  color: AnimalColorEnum
+  description: String
+  imageUrl: String
+  type: AnimalTypeEnum
+}
+
+input LinkUserInput {
+  id: ID
+}
+
+input AnimalOrder {
+  id: OrderDirection
+  createdAt: OrderDirection
+  deletedAt: OrderDirection
+  updatedAt: OrderDirection
+  version: OrderDirection
+  creator: String
+  shelter: String
+  name: String
+  age: String
+  status: String
+  gender: String
+  isSterilized: String
+  weight: String
+  height: String
+  color: String
+  description: String
+  imageUrl: String
+  type: String
+}
+
+type Mutation {
+  updateMyUser(updateUserInput: UpdateMyUserInput!): UserType!
+  createUser(createUserInput: CreateUserInput!): UserType!
+  updateUser(updateUserInput: UpdateUserInput!): UserType!
+  updateUserShelter(updateUserShelterInput: UpdateUserShelterInput!): UserType!
+  deleteUserFromShelter(deleteUserFromShelterInput: LinkUserInput!): UserType!
+  deleteUser(deleteUserInput: LinkUserInput!): Boolean!
+  createShelter(createShelterInput: CreateShelterInput!): ShelterType!
+  updateShelter(updateShelterInput: UpdateShelterInput!): ShelterType!
+  deleteShelter(deleteShelterInput: LinkShelterInput!): Boolean!
+  createAnimal(createAnimalInput: CreateAnimalInput!): AnimalType!
+  updateAnimal(updateAnimalInput: UpdateAnimalInput!): AnimalType!
+  deleteAnimal(deleteAnimalInput: LinkAnimalInput!): Boolean!
+}
+
+input UpdateMyUserInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  firstName: String
+  lastName: String
+  phone: String
+  jobPosition: String
+  shelter: LinkShelterInput
+}
+
+input CreateUserInput {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  jobPosition: String
+  role: UserRoleEnum
+  shelter: LinkShelterInput
+}
+
+input UpdateUserInput {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  firstName: String
+  lastName: String
+  phone: String
+  jobPosition: String
+  role: UserRoleEnum
+  shelter: LinkShelterInput
+}
+
+input UpdateUserShelterInput {
+  id: ID
+  role: UserRoleEnum
+  shelter: LinkShelterInput
+}
+
+input CreateShelterInput {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  title: String
+  address: String
+  phone: String
+  email: String
+}
+
+input UpdateShelterInput {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  title: String
+  address: String
+  phone: String
+  email: String
+}
+
+input CreateAnimalInput {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  creator: LinkUserInput
+  shelter: LinkShelterInput
+  name: String
+  age: Float
+  status: AnimalStatusEnum
+  gender: AnimalGenderEnum
+  isSterilized: Boolean
+  weight: Float
+  height: Float
+  color: AnimalColorEnum
+  description: String
+  imageUrl: String
+  type: AnimalTypeEnum
+}
+
+input UpdateAnimalInput {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  version: Int
+  creator: LinkUserInput
+  shelter: LinkShelterInput
+  name: String
+  age: Float
+  status: AnimalStatusEnum
+  gender: AnimalGenderEnum
+  isSterilized: Boolean
+  weight: Float
+  height: Float
+  color: AnimalColorEnum
+  description: String
+  imageUrl: String
+  type: AnimalTypeEnum
+}
+
+input LinkAnimalInput {
+  id: ID
+}

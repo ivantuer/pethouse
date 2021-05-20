@@ -18,15 +18,30 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "mg": "npm run typeorm -- migration:generate -n",
+    "mr": "npm run typeorm migration:run",
+    "mrevert": "npm run typeorm migration:revert",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "@nestjs/common": "^7.0.0",
+    "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.0.0",
+    "@nestjs/graphql": "^7.10.6",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/typeorm": "7.1.5",
+    "apollo-server-express": "^2.24.0",
+    "class-validator": "^0.13.1",
+    "graphql": "^15.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwk-to-pem": "^2.0.5",
+    "node-fetch": "^2.6.1",
+    "pg": "8.5.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "typeorm": "0.2.29"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
@@ -34,6 +49,8 @@
     "@nestjs/testing": "^7.0.0",
     "@types/express": "^4.17.3",
     "@types/jest": "26.0.10",
+    "@types/jsonwebtoken": "^8.5.1",
+    "@types/jwk-to-pem": "^2.0.0",
     "@types/node": "^13.9.1",
     "@types/supertest": "^2.0.8",
     "@typescript-eslint/eslint-plugin": "3.9.1",
